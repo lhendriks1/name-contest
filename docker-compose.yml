@@ -1,0 +1,42 @@
+version: '3'
+services:
+  node:
+    build:
+      context: .
+      dockerfile: node.dockerfile
+    ports:
+      - "8080:8080"
+    networks:
+      - nodeapp-network
+
+  mongo:
+    image: mongo
+    networks:
+      - nodeapp-network
+    volumes: [
+      '~/docker-volumes/host:/host',
+      '~/docker-volumes/mongo:/data/db'
+    ]
+
+  postgres:
+    build:
+      context: .
+      dockerfile: postgres.dockerfile
+    restart: always
+    networks:
+      - nodeapp-network
+    ports:
+      - "5432:5432"
+    environment:
+      PGDATA: '/var/lib/postgresql/data/pgdata'
+      POSTGRES_USER: 'unicorn_user'
+      POSTGRES_PASSWORD: 'hello'
+      POSTGRES_DB: 'contests'
+    volumes: [
+      '~/docker-volumes/host:/host',
+      '~/docker-volumes/postgres:/var/lib/postgresql/data'
+    ]
+
+networks:
+  nodeapp-network:
+    driver: bridge
