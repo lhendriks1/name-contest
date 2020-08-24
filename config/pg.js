@@ -1,5 +1,6 @@
-module.exports = {
-  development: {
-    database: 'contests',
-  }
-};
+// module.exports = {
+//   development: {
+//     port: 5432,
+//     database: 'contests',
+//   }
+// };

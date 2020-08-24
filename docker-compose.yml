@@ -1,6 +1,7 @@
 version: '3'
 services:
   node:
+    restart: always
     build:
       context: .
       dockerfile: node.dockerfile
@@ -8,6 +9,9 @@ services:
       - "8080:8080"
     networks:
       - nodeapp-network
+    environment:
+      DATABASE_URL: postgres://unicorn_user:hello@db:5432/contests\
+
 
   mongo:
     image: mongo
