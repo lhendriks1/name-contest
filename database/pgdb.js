@@ -1,7 +1,7 @@
 module.exports = pgPool => {
     return {
         getUser(apiKey) {
-            console.log('hello')
+            console.log('Hi!!!!')
             //return promise that resolves to users object
             return pgPool.query(`
             select * from users

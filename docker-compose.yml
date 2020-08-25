@@ -1,46 +1,51 @@
 version: '3'
 services:
   node:
-    restart: always
     build:
       context: .
       dockerfile: node.dockerfile
+    depends_on:
+      - postgres
     ports:
       - "8080:8080"
     networks:
       - nodeapp-network
-    environment:
-      DATABASE_URL: postgres://unicorn_user:hello@db:5432/contests\
+    volumes:
+      - ./:/var/www
+#    environment:
+#      DATABASE_URL: postgres://unicorn_user:hello@db:5432/contests
+#    - PGUSER=unicorn_user
+#    - PGHOST=localhost
+#    - PGPASSWORD=hello
+#    - PGDATABASE=contests
+#    - PGPORT=5432
 
 
-  mongo:
-    image: mongo
-    networks:
-      - nodeapp-network
-    volumes: [
-      '~/docker-volumes/host:/host',
-      '~/docker-volumes/mongo:/data/db'
-    ]
+#  mongo:
+#    image: mongo
+#    networks:
+#      - nodeapp-network
+#    volumes: [
+#      '~/docker-volumes/host:/host',
+#      '~/docker-volumes/mongo:/data/db'
+#    ]
 
   postgres:
-    build:
-      context: .
-      dockerfile: postgres.dockerfile
-    restart: always
+    image: postgres
+#    restart: always
     networks:
       - nodeapp-network
     ports:
       - "5432:5432"
     environment:
-      PGDATA: '/var/lib/postgresql/data/pgdata'
-      POSTGRES_USER: 'unicorn_user'
-      POSTGRES_PASSWORD: 'hello'
-      POSTGRES_DB: 'contests'
-    volumes: [
-      '~/docker-volumes/host:/host',
-      '~/docker-volumes/postgres:/var/lib/postgresql/data'
-    ]
+      - POSTGRES_PASSWORD="hello"
+    volumes:
+      -  postgres:/var/lib/postgresql/data
 
 networks:
   nodeapp-network:
     driver: bridge
+
+volumes:
+  postgres:
+    driver: local

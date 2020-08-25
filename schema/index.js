@@ -34,7 +34,7 @@ const RootQueryType = new GraphQLObjectType({
         //read user info from database
         //using args.key as the api key
         //ctx from executor (passes pgPool)
-        console.log(pgPool)
+        console.log('pgPool: ', pgPool)
         return pgdb(pgPool).getUser(args.key);
      }
    }
