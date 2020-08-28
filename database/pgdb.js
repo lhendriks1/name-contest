@@ -1,9 +1,9 @@
-module.exports = pgPool => {
+module.exports = pool => {
     return {
         getUser(apiKey) {
             console.log('Hi!!!!')
             //return promise that resolves to users object
-            return pgPool.query(`
+            return pool.query(`
             select * from users
             where api_key = $1
             `, [apiKey]).then(res => {
