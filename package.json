@@ -12,7 +12,8 @@
     "url": "git+https://github.com/reactjscamp/name-contests.git"
   },
   "keywords": [
-    "graphql"
+    "graphql",
+    "docker"
   ],
   "bugs": {
     "url": "https://github.com/reactjscamp/name-contests/issues"
