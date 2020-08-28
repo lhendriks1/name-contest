@@ -12,8 +12,8 @@ services:
       - nodeapp-network
     volumes:
       - ./:/var/www
-#    environment:
-#      DATABASE_URL: postgres://unicorn_user:hello@db:5432/contests
+    environment:
+      DATABASE_URL: postgres://postgres:hello@postgres:5432/contests
 #    - PGUSER=unicorn_user
 #    - PGHOST=localhost
 #    - PGPASSWORD=hello
