@@ -9,7 +9,17 @@ const {
 module.exports = new GraphQLObjectType({
     name: 'MeType',
     fields: {
-        id: { type: GraphQLID },
-        email:{ type: new GraphQLNonNull(GraphQLString)} // per db design email is required
+        id: { type: GraphQLID }, // GraphQLID is a special scalar type to represent a unique value
+        email:{ type: new GraphQLNonNull(GraphQLString)}, // per db design email is required
+        // firstName: { // thjs would work but will become repetitive
+        //     type: GraphQLString,
+        //     resolve: obj => obj.first_name
+        // },
+        firstName: {type: GraphQLString},
+        lastName: {type: GraphQLString},
+        fullName: {
+            type: GraphQLString,
+            resolve: obj => `${obj.firstName} ${obj.lastName}`
+        }
     }
 });
