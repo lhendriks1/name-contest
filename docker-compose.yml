@@ -18,17 +18,6 @@ services:
       POSTGRES_PASSWORD: changeme
       POSTGRES_USER: postgres
 
-  mongo:
-    build:
-      context: .
-      dockerfile: mongo.dockerfile
-    ports:
-      - "8081:8081"
-    environment:
-      - MONGO_URL=mongodb://mongo:27017/contests
-    volumes:
-      - mongo:/var/lib/mongo/data
-
   db:
     build:
       context: .
@@ -41,6 +30,18 @@ services:
       - POSTGRES_DB=contests
     volumes:
       -  postgres:/var/lib/postgresql/data
+
+
+  mongo:
+    build:
+      context: .
+      dockerfile: mongo.dockerfile
+    ports:
+      - "8081:8081"
+    environment:
+      - MONGO_URL=mongodb://mongo:27017/contests
+    volumes:
+      - mongo:/var/lib/mongo/data
 
 volumes:
   postgres:
