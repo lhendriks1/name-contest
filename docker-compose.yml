@@ -6,6 +6,7 @@ services:
       dockerfile: node.dockerfile
     depends_on:
       - db
+      - mongo
     ports:
       - "8080:8080"
     volumes:
@@ -17,12 +18,16 @@ services:
       POSTGRES_PASSWORD: changeme
       POSTGRES_USER: postgres
 
-#  mongo:
-#    image: mongo
-#    volumes: [
-#      '~/docker-volumes/host:/host',
-#      '~/docker-volumes/mongo:/data/db'
-#    ]
+  mongo:
+    build:
+      context: .
+      dockerfile: mongo.dockerfile
+    ports:
+      - "8081:8081"
+    environment:
+      - MONGO_URL=mongodb://mongo:27017/contests
+    volumes:
+      - mongo:/var/lib/mongo/data
 
   db:
     build:
@@ -39,4 +44,6 @@ services:
 
 volumes:
   postgres:
+    driver: local
+  mongo:
     driver: local
