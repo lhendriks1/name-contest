@@ -39,7 +39,9 @@ services:
     ports:
       - "8081:8081"
     environment:
-      - MONGO_URL=mongodb://mongo:27017/contests
+      - MONGO_INITDB_DATABASE=contests
+      - MONGO_INITDB_ROOT_USERNAME=mongo
+      - MONGO_INITDB_ROOT_PASSWORD=changme
     volumes:
       - mongo:/var/lib/mongo/data
 

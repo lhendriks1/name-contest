@@ -1,5 +1,5 @@
 module.exports = {
   development: {
-    url: 'mongodb://localhost:3000/contests'
+    url: 'mongodb://mongo:changeme@localhost:8081/contests'
   }
 };
