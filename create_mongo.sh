@@ -4,4 +4,4 @@ set -e
 
 echo "Starting mongo scripts for : ${MONGO_INITDB_DATABASE}...."
 
-mongoimport --username mongo --password changeme --host localhost --port 8081 -d contests -c users /database/users.json
+mongoimport --host mongo --port 27017 --db contests --collection users --type json --file /database/users.json --jsonArray

@@ -33,17 +33,34 @@ services:
 
 
   mongo:
-    build:
-      context: .
-      dockerfile: mongo.dockerfile
-    ports:
-      - "8081:8081"
+    image: library/mongo:3.2.6
     environment:
-      - MONGO_INITDB_DATABASE=contests
-      - MONGO_INITDB_ROOT_USERNAME=mongo
-      - MONGO_INITDB_ROOT_PASSWORD=changme
+      MONGO_INITDB_DATABASE: contests
+    ports:
+      - "27017:27017"
+
+  mongo_seed:
+    image: mongo:3.2.6
+    links:
+      - mongo
     volumes:
-      - mongo:/var/lib/mongo/data
+      - ./database/users.json:/database/users.json
+      - ./create_mongo.sh:/create_mongo.sh
+    command: bash -c "
+      chmod +x /create_mongo.sh &&
+      /create_mongo.sh"
+#  mongo:
+#    build:
+#      context: .
+#      dockerfile: mongo.dockerfile
+#    ports:
+#      - "27017:27017"
+#    environment:
+#      - MONGO_INITDB_DATABASE=contests
+#      - MONGO_INITDB_ROOT_USERNAME=mongo
+#      - MONGO_INITDB_ROOT_PASSWORD=changme
+#    volumes:
+#      - mongo:/var/lib/mongo/data
 
 volumes:
   postgres:
