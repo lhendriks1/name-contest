@@ -8,7 +8,7 @@ module.exports = new GraphQLEnumType({
         // values object lists all possible values for this enum.
         // The keys are how we want them represented in graphql queries and these could be anything
         // the values are how the enum values are represented in the database
-        // in this case we are just making sure graphql is aware of the enum contraint
+        // in this case we are just making sure graphql is aware of the enum constraint
         // but it could also be used to let our users deal with strings instead of number for example
         DRAFT: {value: 'draft'},
         PUBLISHED: {value: 'published'},

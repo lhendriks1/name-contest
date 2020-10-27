@@ -18,9 +18,9 @@ const RootQueryType = new GraphQLObjectType({
       description: "Fields descriptions can use *markup*, **woo hoo!!**",
       resolve: () => 'world'
     },
-    me: {
+    user: {
       type: UserType,
-      description: 'The current user identified by an api key',
+      description: 'A user identified by an api key',
       args: { // names of expect arguments as keys, and their type as definition
         key: { type: new GraphQLNonNull(GraphQLString) } // GraphQLNonNull is a type modifier that wraps the type to make it required
       },

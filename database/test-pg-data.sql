@@ -47,21 +47,21 @@ create table votes (
 
 INSERT INTO "users" ("email","first_name","last_name","api_key")
 VALUES
-(E'samer@agilelabs.com',E'Samer',E'Buna',E'4242'),
-(E'creative@mind.com',E'Creative',E'Mind',E'0000');
+(E'user1@test.com',E'User',E'One',E'4242'),
+(E'usr2@test.com',E'User',E'Two',E'0000');
 
 INSERT INTO "contests" ("code","title","description","status","created_by")
 VALUES
-(E'free-programming-books-site',E'Free Programming Books Site',E'A list of free online programming books, categorized by languages/topics',E'draft',1),
-(E'visualize-most-popular-tweets',E'Visualize Most Popular Tweets',E'A site to constantly visualize the most popular tweets in your stream',E'published',1),
-(E'entrepreneurs-looknig-for-partnership',E'Interview Entrepreneurs Looking For Partnership',NULL,E'archived',1);
+(E'contest_1',E'A title',E'What a fantastic title',E'draft',1),
+(E'contest_2',E'Another Title',E'A super funny title',E'published',1),
+(E'contest_3',E'A really good title',NULL,E'archived',1);
 
 INSERT INTO "names" ("contest_id","label","normalized_label","description","created_by")
 VALUES
-(1,E'RootLib',E'rootlib',E'The Root Library',2),
-(1,E'The Free List',E'thefreelist',NULL,2),
-(2,E'PopTweet',E'poptweet',NULL,2),
-(2,E'TwitterScope',E'twitterscope',NULL,2);
+(1,E'Name submission',E'namesubmission',E'The Root Library',2),
+(1,E'Another submission',E'anothersubmission',NULL,2),
+(2,E'AVeryCreativeSubmission',E'averycreativesubmission',NULL,2),
+(2,E'Not a great name',E'Notagreatname',NULL,2);
 
 INSERT INTO "votes" ("name_id","up","created_by")
 VALUES
