@@ -17,7 +17,7 @@ module.exports = new GraphQLObjectType({
     fields: {
         id: { type: GraphQLID }, // GraphQLID is a special scalar type to represent a unique value
         email:{ type: new GraphQLNonNull(GraphQLString)}, // per db design email is required
-        // firstName: { // thjs would work but will become repetitive so put logic in pgdb.js instead
+        // firstName: { // this would work but will become repetitive so put logic in pgdb.js instead
         //     type: GraphQLString,
         //     resolve: obj => obj.first_name
         // },
